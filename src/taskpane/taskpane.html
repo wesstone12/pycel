@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>pycel Add-in</title>
+    <link rel="stylesheet" href="taskpane.css" />
+    <!-- Include the Office.js library -->
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <!-- Your custom script -->
+    <script src="taskpane.js" defer></script>
+  </head>
+  <body>
+    <div id="sideload-msg">
+      <!-- Message to display while sideloading -->
+      <h1>Welcome to pycel!</h1>
+      <p>This add-in allows you to execute Python scripts and generate plots directly from Excel.</p>
+    </div>
+    <div id="app-body" style="display: none; flex-direction: column; align-items: flex-start;">
+      <h1>pycel Add-in</h1>
+      
+      <!-- Script Input Section -->
+      <textarea id="script-input" rows="10" cols="50" placeholder="Enter your Python script here...">
+# Create a DataFrame with random data
+data = {
+    'Month': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    'Sales': [250, 300, 400, 350, 500, 600],
+    'Expenses': [200, 220, 330, 280, 400, 420]
+}
+
+df = pd.DataFrame(data)
+
+# Calculate Profit
+df['Profit'] = df['Sales'] - df['Expenses']
+
+# Print the DataFrame
+print(df)
+
+# Plot Sales, Expenses, and Profit
+plt.plot(df['Month'], df['Sales'], label='Sales')
+plt.plot(df['Month'], df['Expenses'], label='Expenses')
+plt.plot(df['Month'], df['Profit'], label='Profit')
+plt.title('Company Performance')
+plt.xlabel('Month')
+plt.ylabel('Amount')
+plt.legend()
+      </textarea>
+      
+      <button id="execute-script">Execute Script</button>
+      
+      <!-- Loading Indicator -->
+      <div id="loading-indicator" style="display: none; margin-top: 20px;">
+        <p>Processing...</p>
+        <div class="spinner"></div>
+      </div>
+      
+      <!-- Plot Display Section -->
+      <div id="plot-container" style="margin-top: 20px;">
+        <h2>Generated Plot:</h2>
+        <img
+          id="plot-image"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+          alt="Plot will appear here."
+          style="max-width: 100%; height: auto;"
+        />
+      </div>
+    </div>
+  </body>
+</html>

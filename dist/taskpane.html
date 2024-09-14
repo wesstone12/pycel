@@ -1,0 +1,13 @@
+<!doctype html><html><head><title>pycel Add-in</title><link rel="stylesheet" href="9367c0fb81875747ddc4.css"/><script src="1bcf162c09ad79190bfb.js" defer="defer"></script><script defer="defer" src="polyfill.js"></script><script defer="defer" src="taskpane.js"></script></head><body><div id="sideload-msg"><h1>Welcome to pycel!</h1><p>This add-in allows you to execute Python scripts and generate plots directly from Excel.</p></div><div id="app-body" style="display:none;flex-direction:column;align-items:flex-start"><h1>pycel Add-in</h1><textarea id="script-input" rows="10" cols="50" placeholder="Enter your Python script here...">
+import matplotlib.pyplot as plt
+
+# Sample data
+categories = ['A', 'B', 'C']
+values = [10, 20, 15]
+
+# Create a bar chart
+plt.bar(categories, values)
+plt.title('Sample Bar Chart')
+plt.xlabel('Categories')
+plt.ylabel('Values')
+      </textarea> <button id="execute-script">Execute Script</button><div id="loading-indicator" style="display:none;margin-top:20px"><p>Processing...</p><div class="spinner"></div></div><div id="plot-container" style="margin-top:20px"><h2>Generated Plot:</h2><img id="plot-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Plot will appear here." style="max-width:100%;height:auto"/></div></div></body></html>
